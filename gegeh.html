@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Vượt Link</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: white;
+        text-align: center;
+        padding-top: 50px;
+        overflow-x: hidden;
+    }
+    #box {
+        background: #222;
+        padding: 25px;
+        border-radius: 10px;
+        width: 80%;
+        margin: auto;
+        max-width: 400px;
+        position: relative;
+        z-index: 2;
+    }
+    h2 {
+        font-size: 48px; /* to hơn */
+        font-weight: bold;
+        margin: 20px 0;
+        text-align: center; /* chính giữa */
+        color: #ffcc00; /* nổi bật */
+    }
+    #download {
+        display: none;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: #00ccff;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+
+    .doge {
+        position: absolute;
+        font-size: 40px;
+        pointer-events: none;
+        z-index: 1;
+        animation: fall linear;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div id="box">
+    <h2>danh mập đít!</h2>
+    <p>Vui lòng chờ <span id="time">20</span> giây...</p>
+
+    <a id="download" href="https://www.mediafire.com/file/tny7opi9mongrzh/Roblox+arceus+X+neo+1.9.3+by+anh+Longdeptrai.apk/file" download>⬇️ Tải File</a>
+</div>
+
+<script>
+    // Timer 20s
+    let time = 20;
+    const timer = setInterval(() => {
+        time--;
+        document.getElementById("time").textContent = time;
+        if (time <= 0) {
+            clearInterval(timer);
+            document.getElementById("download").style.display = "inline-block";
+        }
+    }, 1000);
+
+    // Doge emoji rơi
+    function spawnDoge() {
+        const doge = document.createElement("div");
+        doge.className = "doge";
+        doge.textContent = "🐶"; // emoji doge
+        doge.style.left = Math.random() * 90 + "vw";
+        doge.style.fontSize = (30 + Math.random() * 30) + "px";
+        doge.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(doge);
+
+        setTimeout(() => { doge.remove(); }, 6000);
+    }
+
+    const dogeInterval = setInterval(spawnDoge, 400);
+    setTimeout(() => { clearInterval(dogeInterval); }, 20000);
+</script>
+
+</body>
+</html>
